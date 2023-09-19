@@ -1,0 +1,8 @@
+.env
+.venv
+.vscode
+node_modules
+data
+database/*
+!database/.gitkeep
+package-lock.json

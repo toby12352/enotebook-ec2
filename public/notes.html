@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link href="/node_modules/quill/dist/quill.snow.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Patrick+Hand&family=Courier+Prime&family=Lora&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="fonts.css">
+        <title>E-Notebook</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+        <div id="sidebar">
+            <div class="top-nav">
+                <a href="index.html">
+                    <div class="img-container">
+                        <img src="images/homepage.png" alt="Home">
+                    </div>
+                </a>
+                <a href="#" id="loginLink">
+                    <div class="img-container">
+                        <img src="images/profile.png" alt="Profile">
+                    </div>
+                </a>
+                <a href="journeys.html">
+                    <div class="img-container">
+                        <img src="images/journeys.png" alt="Journeys">
+                    </div>
+                </a>
+                <a href="notes.html">
+                    <div class="img-container">
+                        <img src="images/notebook.jpg" alt="Notes">
+                    </div>
+                </a>
+                <a href="changelog.html">
+                    <div class="img-container">
+                        <img src="images/help.png" alt="Help">
+                    </div>
+                </a>
+            </div>
+            <div class="bottom-nav">
+                <a href="#" id="settings-button">
+                    <div class="img-container">
+                        <img src="images/settings.png" alt="Settings">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="settings-overlay" style="display: none;">
+            <div id="settings-modal">
+                <button id="close-settings-button">X</button>
+                <h2>Settings</h2>
+                <div class="settings-option">
+                    <label for="option1">TTS Type:</label>
+                    <select id="option1">
+                        <option value="instant">Instant</option>
+                        <option value="gTTS">Google TTS</option>
+                        <option value="aiTTS">AI TTS</option>
+                        <option value="11aiTTS">Premium AI TTS</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="module_type">Selected Module:</label>
+                    <select id="module_type">
+                        <option value="default">Default</option>
+                        <option value="language">Language</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="option2">Enable TTS:</label>
+                    <input type="checkbox" id="option2" checked>
+                </div>
+                <div class="settings-option">
+                    <label for="speech_option">Enable Voice To Text:</label>
+                    <input type="checkbox" id="speech_option" checked>
+                </div>
+                <div class="settings-option">
+                    <label for="volume-slider">TTS Volume:</label>
+                    <input type="range" id="volume-slider" min="0" max="100" step="1" value="100">
+                    <span id="volume-value">100%</span>
+                </div>
+                <div class="settings-option">
+                    <label for="speed-slider">TTS Speed:</label>
+                    <input type="range" id="speed-slider" min="0" max="400" step="1" value="100">
+                    <span id="speed-value">100%</span>
+                </div>
+                <div class="settings-option">
+                    <label for="color-picker">Color Theme:</label>
+                    <select id="color-picker">
+                        <option value="default">Default</option>
+                        <option value="dark">Dark</option>
+                        <option value="azure">Azure</option>
+                        <option value="mint">Mint</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="option4">Enable Developer Mode:</label>
+                    <input type="checkbox" id="option4">
+                </div>
+            </div>
+        </div>
+        <h1 id="title">eNotebook Personal Tutor</h1>
+
+        <div id="saveModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <label for="filename">File Name:</label>
+              <input type="text" id="filename" name="filename">
+              <button onclick="saveFile()">Save</button>
+            </div>
+        </div>
+
+        <div id="controls">
+            <button id="choose-template-button">Choose Template</button>
+            <div id="template-dropdown-container" style="display:none;">
+                <select id="template-dropdown">
+                    
+                </select>
+                <button id="control-button" onclick="applyTemplate()">Apply</button>
+            </div>
+
+            <button id="control-button" onclick="showSaveModal()">Save</button>
+
+            <select id="file-dropdown">
+                <!-- Populated with files from data -->
+            </select>
+            
+            <button id="control-button" onclick="loadFile()">Load</button>
+
+            <button id="control-button" onclick="generateFlashCards()">Create Flashcards</button>
+
+            <button id="control-button" onclick="generateStudyGuide()">Create Study Guide</button>
+
+            <button id="control-button" onclick="generatePracticeTest()">Create Practice Test</button>
+        </div>
+
+        <div id="notes-box">
+            <div id="editor"></div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/node_modules/quill/dist/quill.js"></script>
+        <script>
+            console.log('Quill:', Quill);
+        </script>
+        <script src="/node_modules/quill-better-table/dist/quill-better-table.js"></script>
+        <script>
+            console.log('QuillBetterTable:', Quill);
+        </script>
+        <script type="text/javascript" src="/node_modules/dompurify/dist/purify.js"></script>
+        <script src="/notes.js"></script>
+        <script src="/authentication.js"></script> 
+        <script src="/settings.js"></script>
+        <script src="/main.js"></script>
+        <script src="/speech.js"></script>
+        <script src="/speechRecognition.js"></script>
+    </body>
+</html>

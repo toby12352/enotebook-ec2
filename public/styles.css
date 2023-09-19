@@ -1,0 +1,615 @@
+:root {
+    --theme-main-color: #fff;
+    --theme-background-color: #f0f0f0;
+    --theme-chatbox-color: #fff;
+    --theme-disabled-color: #c4c4c4;
+    --theme-nav-color: #1b1b1b;
+    --theme-nav-text-color: #fff;
+    --theme-user-background: #eeeeee;
+    --theme-reply-background: #e6e6e6;
+    --theme-text-color: #000000;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--theme-background-color);
+    font-family: Arial, sans-serif;
+    background-image: url('images/paper.avif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 60px;
+    background-color: var(--theme-nav-color);
+    opacity: 0.8;
+    color: var(--theme-nav-text-color);
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#sidebar a {
+    color: var(--theme-nav-text-color);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#sidebar .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    margin-top: 20px;
+}
+
+#sidebar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#openStudyResource{
+    background-color: var(--theme-nav-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--theme-nav-text-color);
+    cursor:pointer;
+}
+
+#studyResourceImage{
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#studyResourceContainer{
+    position: fixed;
+    top: 0;
+    width: 500px;
+    height: 100%;
+    /* opacity: 0.8; */
+    background-color: #444545;
+    color: white;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+}
+
+#studyResourceContainer::-webkit-scrollbar{
+    width: 8px;
+}
+
+#studyResourceContainer::-webkit-scrollbar-thumb{
+    background-color: #888;
+}
+
+#favorites{
+    width: 450px;
+    max-height:350px;
+    background-color: #444545;
+    margin: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding: 10px;
+}
+
+#favorites::-webkit-scrollbar{
+    width: 8px;
+}
+
+#favorites::-webkit-scrollbar-thumb{
+    background-color: #888;
+}
+
+#resources{
+    width: 450px;
+    max-height: 500px;
+    background-color: #444545;
+    margin: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+    padding: 10px;
+}
+
+#resources::-webkit-scrollbar{
+    width: 8px;
+}
+
+#resources::-webkit-scrollbar-thumb{
+    background-color: #888;
+}
+
+#addToResources{
+    width:100%;
+    height:100%;
+}
+
+.custom-box{
+    width: calc(50% - 20px);
+    height: calc(50% - 20px); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #afafaf;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.star-icon{
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#addToResources-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addToResourceContainer {
+    position: relative; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.input-box {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block; /* Set to block for better rendering */
+}
+
+.input-box label {
+    width: 30%; /* Adjust the width to your preference */
+    text-align: right; /* Align labels to the right */
+    display: inline-block; /* Add this line to make labels inline-block */
+    margin-right: 10px; /* Add some right margin for spacing */
+}
+
+#website-submit{
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block; /* Set to block for better rendering */
+    justify-content: center;
+}
+
+#title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--theme-text-color);
+}
+
+#settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#settings-modal {
+    position: relative; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+#close-settings-button {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.settings-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.settings-option label {
+    flex-basis: 35%; /* Set a base width for the label */
+    flex-shrink: 0; /* Prevent the label from shrinking */
+}
+
+.settings-option input[type="range"] {
+    flex-grow: 1; /* Allow the slider to take up the rest of the space */
+    margin-left: 10px;
+    margin-right: 10px; /* Add some right margin to prevent slider text being too close */
+}
+
+.settings-option span {
+    flex-shrink: 0; /* Prevent the slider text from shrinking */
+    width: 50px; /* You can adjust this as needed */
+    text-align: right; /* Align the numbers to the right */
+}
+
+.settings-option select,
+.settings-option input[type="checkbox"],
+.settings-option input[type="range"] {
+    flex-shrink: 0;
+    flex-basis: 50%;
+    margin-left: 10px;
+}
+
+
+
+#close-settings-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#loading-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#response-buttons {  /* New wrapper for response buttons */
+    position: absolute;   
+    display: flex;
+    flex-direction: column;  
+    bottom: 0;  /* Align it to the bottom */
+    right: 0;   /* Align it to the right */
+}
+
+#response1-button,
+#response2-button,
+#response3-button {
+    height: 40px;
+    width: 400px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background-color: #2e2e2e; 
+    color: #141414;
+    opacity: 0.5; 
+    border: none; 
+    color: white; 
+}
+
+#message-input-unique {
+    margin-right: 220px; /* Adjust as needed */
+}
+
+#chat-box, #message-input {
+    padding: 0px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--theme-chatbox-color);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: var(--theme-text-color);
+}
+
+#message-input {
+    padding: 20px;
+}
+
+#chat-box {
+    width: 80%;
+    height: 75%;
+    overflow-y: auto;
+    color: var(--theme-text-color);
+    position: relative;
+}
+
+#chat-box .user, #chat-box .bot {
+    position: relative;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--theme-user-background);
+}
+
+#chat-box .user .close-button, #chat-box .bot .close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+#chat-box .user:hover .close-button, #chat-box .bot:hover .close-button {
+    display: block;
+}
+
+#chat-box .user .message-content, #chat-box .bot .message-content {
+    flex-grow: 1; /* Allow content to grow and take up remaining space */
+    overflow-wrap: break-word;
+}
+
+#chat-box .user {
+    align-items: flex-start;
+    background-color: var(--theme-user-background);
+}
+
+#chat-box .bot {
+    align-items: flex-start;
+    background-color: var(--theme-reply-background);
+}
+
+/* This will add space to the right of the username */
+.username-content {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Chat Message Right Corner Interface */
+
+.delete-button {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    opacity: 0;
+    width: 10px;   
+    height: 10px;  
+    transition: opacity 0.1s ease; 
+}
+
+#chat-box .user:hover .delete-button, #chat-box .bot:hover .delete-button {
+    opacity: 1;
+}
+
+#input-field {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+#message-input {
+    width: 100%;
+    height: 30px;
+    color: var(--theme-text-color);
+}
+
+#message-input:disabled {
+    background-color: var(--theme-disabled-color);
+}
+
+#message-input-unique {
+    width: 100%;
+    height: 30px;
+}
+
+#send-button {
+    height: 75%;
+    width: 13%;
+    margin-left: 10px;
+}
+
+#send-button:disabled {
+    background-color: var(--theme-disabled-color);
+}
+
+#listen-button {
+    height: 75%;
+    width: 13%;
+    margin-left: 10px;
+}
+
+#listen-button:disabled {
+    background-color: var(--theme-disabled-color);
+}
+
+#notes-box {
+    background-color: white;
+    width: 90%; 
+    height: 80vh; 
+    margin: 5vh auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    overflow: auto;
+    padding: 20px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #888;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  cursor: pointer;
+}
+
+#controls {
+    display: flex;
+    align-items: center;
+}
+
+#control-button, #choose-template-button {
+    margin-right: 10px;
+    margin-left: 10px;
+    vertical-align: middle; 
+    background-color: #363636; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#control-button:hover, #choose-template-button:hover {
+    background-color: #242424; /* Darker green when hovering */
+}
+
+#file-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    vertical-align: middle; 
+}
+
+#template-dropdown-container {
+    position: absolute;
+    z-index: 1;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+#loginPopup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100; 
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+#loginPopup h2 {
+    margin-bottom: 20px;
+}
+
+#loginUsername, #loginPassword {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#loginButton, #registerButton {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#loginButton {
+    background-color: #32925d;
+    color: white;
+}
+
+.close-popup {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-popup:hover, .close-popup:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#registerButton {
+    background-color: #6C757D;
+    color: white;
+}
+
+#loginButton:hover, #registerButton:hover {
+    opacity: 0.8;
+}
+
+#registerPrompt {
+    margin-top: 10px;
+}
+
+#notification {
+    color: red;
+    font-size: 10px;
+}

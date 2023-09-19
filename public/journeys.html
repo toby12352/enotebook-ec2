@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <title>E-Notebook</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+        <div id="sidebar">
+            <div class="top-nav">
+                <a href="index.html">
+                    <div class="img-container">
+                        <img src="images/homepage.png" alt="Home">
+                    </div>
+                </a>
+                <a href="#" id="loginLink">
+                    <div class="img-container">
+                        <img src="images/profile.png" alt="Profile">
+                    </div>
+                </a>
+                <a href="journeys.html">
+                    <div class="img-container">
+                        <img src="images/journeys.png" alt="Journeys">
+                    </div>
+                </a>
+                <a href="notes.html">
+                    <div class="img-container">
+                        <img src="images/notebook.jpg" alt="Notes">
+                    </div>
+                </a>
+                <a href="changelog.html">
+                    <div class="img-container">
+                        <img src="images/help.png" alt="Help">
+                    </div>
+                </a>
+            </div>
+            <div class="bottom-nav">
+                <a href="#" id="settings-button">
+                    <div class="img-container">
+                        <img src="images/settings.png" alt="Settings">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="settings-overlay" style="display: none;">
+            <div id="settings-modal">
+                <button id="close-settings-button">X</button>
+                <h2>Settings</h2>
+                <div class="settings-option">
+                    <label for="option1">TTS Type:</label>
+                    <select id="option1">
+                        <option value="instant">Instant</option>
+                        <option value="gTTS">Google TTS</option>
+                        <option value="aiTTS">AI TTS</option>
+                        <option value="11aiTTS">Premium AI TTS</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="module_type">Selected Module:</label>
+                    <select id="module_type">
+                        <option value="default">Default</option>
+                        <option value="language">Language</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="option2">Enable TTS:</label>
+                    <input type="checkbox" id="option2" checked>
+                </div>
+                <div class="settings-option">
+                    <label for="speech_option">Enable Voice To Text:</label>
+                    <input type="checkbox" id="speech_option" checked>
+                </div>
+                <div class="settings-option">
+                    <label for="volume-slider">TTS Volume:</label>
+                    <input type="range" id="volume-slider" min="0" max="100" step="1" value="100">
+                    <span id="volume-value">100%</span>
+                </div>
+                <div class="settings-option">
+                    <label for="speed-slider">TTS Speed:</label>
+                    <input type="range" id="speed-slider" min="0" max="400" step="1" value="100">
+                    <span id="speed-value">100%</span>
+                </div>
+                <div class="settings-option">
+                    <label for="color-picker">Color Theme:</label>
+                    <select id="color-picker">
+                        <option value="default">Default</option>
+                        <option value="dark">Dark</option>
+                        <option value="azure">Azure</option>
+                        <option value="mint">Mint</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="option4">Enable Developer Mode:</label>
+                    <input type="checkbox" id="option4">
+                </div>
+            </div>
+        </div>
+        <div id="loading-container">
+            <img id="loading-gif" src="gifs/loading.gif" style="display: none;" />
+        </div>
+        <h1 id="title">eNotebook Journey</h1>
+        <div id="chat-box">
+            <div id="response-buttons"> 
+                <button id="response1-button">Response 1</button>
+                <button id="response2-button">Response 2</button>
+                <button id="response3-button">Response 3</button>
+            </div>
+            <!-- Chat messages will go here -->
+        </div>
+        <div id="input-field">
+            <input type="text" id="message-input" placeholder="Write your own message here...">
+            <button id="send-button">Start Journey!</button>
+        </div>
+        <script type="text/javascript" src="/node_modules/dompurify/dist/purify.js"></script>
+        <script src="/authentication.js"></script> 
+        <script src="/settings.js"></script> 
+        <script src="/journeys.js"></script>
+    </body>
+</html>
