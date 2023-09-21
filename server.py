@@ -81,7 +81,7 @@ def api_repeater(model_name, message_list, temp, maximum_tokens, max_attempts=AP
                     #print(f"{message_text}")
 
                     isNewReply = True if collected_chunks.index(chunk) == 0 else False
-                    requests.post('http://localhost:3000/relay-message', json={'data': message_text, 'newReply': isNewReply})
+                    requests.post('http://18.237.102.230:3000/relay-message', json={'data': message_text, 'newReply': isNewReply})
             return collected_messages
                     
         except Exception as e:
@@ -257,4 +257,4 @@ async def get_chat_reply_audio_free():
 
 
 if __name__ == '__main__':
-    socketio.run(app, port=5000)  # Flask server is running on port 5000
+    socketio.run(app, host='0.0.0.0', port=5000)  # Flask server is running on port 5000

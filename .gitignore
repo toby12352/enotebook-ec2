@@ -1,5 +1,4 @@
 .env
-.venv
 .vscode
 node_modules
 data
