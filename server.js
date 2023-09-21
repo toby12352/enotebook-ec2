@@ -232,6 +232,8 @@ app.post('/save', (req, res) => {
 const server = http.createServer(app);
 const io = socketIo(server);
 
+const ipAddress = '18.237.102.230';
+
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('disconnect', () => {
@@ -245,7 +247,7 @@ app.get('*', function (req, res) {
     res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-server.listen(port, function () {
+server.listen(port, ipAddress, function () {
     console.log("== Server is listening on port", port);
 });
 
