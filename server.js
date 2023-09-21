@@ -230,9 +230,9 @@ app.post('/save', (req, res) => {
 
 
 const server = http.createServer(app);
-const io = socketIo(server);
+const ipAddress = 'http://18.237.102.230:3000/';
+const io = socketIo(ipAddress);
 
-const ipAddress = '18.237.102.230';
 
 io.on('connection', (socket) => {
   console.log('a user connected');
