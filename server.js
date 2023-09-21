@@ -36,7 +36,7 @@ app.post('/get-chat-reply', async function(req, res) {
     const sysMessage = req.body.sys_message;
 
     // Axios POST request to the Flask server
-    axios.post('http://127.0.0.1:5000/get-chat-reply', { message: userMessage, conv_data: conversation_data, sys_message: sysMessage})
+    axios.post('http://18.237.102.230:5000/get-chat-reply', { message: userMessage, conv_data: conversation_data, sys_message: sysMessage})
         .then(response => {
             // The reply from the Python script is in response.data.reply
             res.json({ reply: response.data.reply });
@@ -53,7 +53,7 @@ app.post('/get-audio-reply', async function(req, res) {
     const audioVolume = req.body.audio_volume
     const audioSpeed = req.body.audio_speed
     // Axios POST request to the Flask server
-    axios.post('http://127.0.0.1:5000/get-chat-reply-audio', { message: userMessage, ai_type: audioType }, { responseType: 'arraybuffer' })
+    axios.post('http://18.237.102.230:5000/get-chat-reply-audio', { message: userMessage, ai_type: audioType }, { responseType: 'arraybuffer' })
         .then(audioResponse => {
             // Send the audio responses
             res.setHeader('Content-Type', 'audio/wav');
@@ -68,7 +68,7 @@ app.post('/get-audio-reply', async function(req, res) {
 app.post('/get-audio-reply-free', async function(req, res) {
     const userMessage = req.body.message;
     // Axios POST request to the Flask server
-    axios.post('http://127.0.0.1:5000/get-chat-reply-audio-free', { message: userMessage }, { responseType: 'arraybuffer' })
+    axios.post('http://18.237.102.230:5000/get-chat-reply-audio-free', { message: userMessage }, { responseType: 'arraybuffer' })
         .then(audioResponse => {
             // Send the audio responses
             res.setHeader('Content-Type', 'audio/mp3');
@@ -229,8 +229,7 @@ app.post('/save', (req, res) => {
 
 
 
-const server = http.createServer(app);
-const ipAddress = 'http://18.237.102.230:3000/';
+const ipAddress = '18.237.102.230:3000';
 const io = socketIo(ipAddress);
 
 
@@ -246,6 +245,8 @@ io.on('connection', (socket) => {
 app.get('*', function (req, res) {
     res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
+
+const server = http.createServer(app);
 
 server.listen(port, '0.0.0.0', function () {
     console.log("== Server is listening on port", port);
