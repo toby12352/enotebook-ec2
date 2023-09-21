@@ -247,7 +247,7 @@ app.get('*', function (req, res) {
     res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-server.listen(port, ipAddress, function () {
+server.listen(port, '0.0.0.0', function () {
     console.log("== Server is listening on port", port);
 });
 
