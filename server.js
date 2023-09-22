@@ -9,7 +9,7 @@ const fs = require('fs');
 const cors = require('cors');
 const socketIo = require('socket.io');
 const app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 const DATA_DIR = path.join(__dirname, 'data');
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -53,7 +53,7 @@ app.post('/get-audio-reply', async function(req, res) {
     const audioVolume = req.body.audio_volume
     const audioSpeed = req.body.audio_speed
     // Axios POST request to the Flask server
-    axios.post('http://18.237.102.230:5000/get-chat-reply-audio', { message: userMessage, ai_type: audioType }, { responseType: 'arraybuffer' })
+    axios.post('http://127.0.0.1:5000/get-chat-reply-audio', { message: userMessage, ai_type: audioType }, { responseType: 'arraybuffer' })
         .then(audioResponse => {
             // Send the audio responses
             res.setHeader('Content-Type', 'audio/wav');
@@ -68,7 +68,7 @@ app.post('/get-audio-reply', async function(req, res) {
 app.post('/get-audio-reply-free', async function(req, res) {
     const userMessage = req.body.message;
     // Axios POST request to the Flask server
-    axios.post('http://18.237.102.230:5000/get-chat-reply-audio-free', { message: userMessage }, { responseType: 'arraybuffer' })
+    axios.post('http://127.0.0.1:5000/get-chat-reply-audio-free', { message: userMessage }, { responseType: 'arraybuffer' })
         .then(audioResponse => {
             // Send the audio responses
             res.setHeader('Content-Type', 'audio/mp3');
@@ -229,9 +229,8 @@ app.post('/save', (req, res) => {
 
 
 
-const ipAddress = '18.237.102.230:3000';
-const io = socketIo(ipAddress);
-
+const server = http.createServer(app);
+const io = socketIo(server);
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -245,8 +244,6 @@ io.on('connection', (socket) => {
 app.get('*', function (req, res) {
     res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
-
-const server = http.createServer(app);
 
 server.listen(port, '0.0.0.0', function () {
     console.log("== Server is listening on port", port);
