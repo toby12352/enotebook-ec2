@@ -14,7 +14,7 @@ from flask_socketio import SocketIO, emit
 #from ttsmms import TTS
 from io import BytesIO
 from gtts import gTTS
-# from elevenlabs import generate, play, set_api_key, save
+from elevenlabs import generate, play, set_api_key, save
 from tempfile import NamedTemporaryFile
 import googleapiclient.discovery
 import googleapiclient.errors
