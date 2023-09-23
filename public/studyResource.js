@@ -87,18 +87,6 @@ function toggleFavorites(starIcon, resource){
     }
 }
 
-function sortStudyBoxesAlphabetically() {
-    const elements = Array.from(jsonBoxes.children);
-    elements.sort((a, b) => {
-        const textA = a.querySelector(".resource-name").textContent.toLowerCase();
-        const textB = b.querySelector(".resource-name").textContent.toLowerCase();
-        return textA.localeCompare(textB);
-    });
-    elements.forEach((element) => {
-        jsonBoxes.appendChild(element);
-    });
-}   
-
 function createResourceBox(resource){
     const resourceBox = document.createElement("div");
     resourceBox.id = "resource-box";
