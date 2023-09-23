@@ -99,7 +99,7 @@ document.getElementById('speed-value').addEventListener('change', function(e) {
     saveSettings();
 });
 
-colorThemes = {
+var colorThemes = {
     "default": {
         "--theme-main-color": "#fff",
         "--theme-background-color": "#f0f0f0",

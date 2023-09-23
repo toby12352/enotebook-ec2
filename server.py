@@ -197,50 +197,50 @@ def get_chat_reply():
     print(f"Used Tokens: {user_tokens + system_tokens + api_tokens} | User used {user_tokens} tokens, System used {system_tokens} tokens, API used {api_tokens} tokens")
     return jsonify({'reply': reply})
 
-# @app.route('/get-chat-reply-audio', methods=['POST'])
-# async def get_chat_reply_audio():
-#     data = request.json
-#     userMessage = data['message']
-#     ai_type = data['ai_type']
+@app.route('/get-chat-reply-audio', methods=['POST'])
+async def get_chat_reply_audio():
+    data = request.json
+    userMessage = data['message']
+    ai_type = data['ai_type']
 
-#     bad_TTS = True 
-#     if(ai_type == "11aiTTS"):
-#         bad_TTS = False
+    bad_TTS = True 
+    if(ai_type == "11aiTTS"):
+        bad_TTS = False
 
-#     wav_io = None
+    wav_io = None
 
-#     if(bad_TTS):
-#         # Process the user message
-#         translator = str.maketrans('', '', string.punctuation)
+    if(bad_TTS):
+        # Process the user message
+        translator = str.maketrans('', '', string.punctuation)
 
-#         userMessage = userMessage.translate(translator)
+        userMessage = userMessage.translate(translator)
 
-#         stringedMessages = userMessage.split()
-#         msgLength = len(stringedMessages)
-#         for i in range(msgLength):
-#             if(stringedMessages[i].isdigit()):
-#                 replacement = inflect_engine.number_to_words(stringedMessages[i])
-#                 stringedMessages[i] = replacement
+        stringedMessages = userMessage.split()
+        msgLength = len(stringedMessages)
+        for i in range(msgLength):
+            if(stringedMessages[i].isdigit()):
+                replacement = inflect_engine.number_to_words(stringedMessages[i])
+                stringedMessages[i] = replacement
 
-#         userMessage = " ".join(stringedMessages)
+        userMessage = " ".join(stringedMessages)
 
-#         temp_wav = NamedTemporaryFile(delete=True)
-#         temp_wav.close()
-#         tts.synthesis(userMessage, wav_path=temp_wav.name)
-#         with open(temp_wav.name, 'rb') as f:
-#             wav_data = f.read()
-#         wav_io = BytesIO(wav_data)
-#         # Make sure to delete the temporary file after you are done with it
-#         os.unlink(temp_wav.name)
-#     else:
-#         audio = generate(
-#             text=userMessage,
-#             voice="Josh",
-#             model="eleven_monolingual_v1"
-#         )
-#         wav_io = BytesIO(audio)
+        temp_wav = NamedTemporaryFile(delete=True)
+        temp_wav.close()
+        tts.synthesis(userMessage, wav_path=temp_wav.name)
+        with open(temp_wav.name, 'rb') as f:
+            wav_data = f.read()
+        wav_io = BytesIO(wav_data)
+        # Make sure to delete the temporary file after you are done with it
+        os.unlink(temp_wav.name)
+    else:
+        audio = generate(
+            text=userMessage,
+            voice="Josh",
+            model="eleven_monolingual_v1"
+        )
+        wav_io = BytesIO(audio)
 
-#     return send_file(wav_io, mimetype='audio/wav')
+    return send_file(wav_io, mimetype='audio/wav')
 
 
 @app.route('/get-chat-reply-audio-free', methods=['POST'])
