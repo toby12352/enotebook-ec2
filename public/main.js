@@ -1,6 +1,7 @@
 // Get the button element
 var sendButton = document.getElementById('send-button');
 var stopButton = document.getElementById('stop-button');
+var tts_enabled = document.getElementById('option2');
 
 // Get the input field
 var messageInput = document.getElementById('message-input');
