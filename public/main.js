@@ -16,7 +16,7 @@ let lastMessageBox = {
 var messageCache = []
 
 // SocketIO connection and reciever
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('http://18.237.102.230:3000/');
 
 
 var currentText = ""
@@ -173,7 +173,7 @@ async function sendMessage(pushedMessage = "") {
 }
 
 async function getTextReply(input_message, system_message="", subprocess=false) {
-    data_package = {
+    var data_package = {
         message: input_message,
         data: messageCache,
         sys_message: system_message
